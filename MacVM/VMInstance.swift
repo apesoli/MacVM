@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Virtualization
 
+
 class VMInstallationState: ObservableObject {
     
     @Published var isInstalled: Bool
@@ -148,6 +149,44 @@ class VMInstance: NSObject, VZVirtualMachineDelegate {
         }
     }
     
+    func startRecovery() {
+        guard let hardwareModelData = document?.content.hardwareModelData,
+              let machineIdentifierData = document?.content.machineIdentifierData else {
+              return
+          }
+
+        guard let hardwareModel = VZMacHardwareModel(dataRepresentation: hardwareModelData),
+              let machineIdentifier = VZMacMachineIdentifier(dataRepresentation: machineIdentifierData) else {
+              return
+          }
+
+        guard let configuration = getVMConfiguration(
+            hardwareModel: hardwareModel,
+            machineIdentifier: machineIdentifier,
+            diskURL: documentURL.appendingPathComponent("disk.img"),
+            auxiliaryStorageURL: documentURL.appendingPathComponent("aux.img")
+        ) else {
+            return
+        }
+
+        do {
+            try configuration.validate()
+
+            let vm = VZVirtualMachine(configuration: configuration, queue: .main)
+            vm.delegate = self
+
+            let recovery = Recovery()
+            let ret = recovery.boot(vm)
+            if !ret {
+                self.document?.isRunning = true
+            }
+
+            self.virtualMachine = vm
+        } catch {
+            NSLog("Error: \(error)")
+        }
+    }
+
     func start() {
         guard let hardwareModelData = document?.content.hardwareModelData,
               let machineIdentifierData = document?.content.machineIdentifierData else {
