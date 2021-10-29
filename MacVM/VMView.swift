@@ -36,6 +36,23 @@ struct VMView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .toolbar {
             ToolbarItem {
+                Button("R", action: {
+                    guard let fileURL = fileURL else {
+                        return
+                    }
+
+                    if document.isRunning {
+                        document.vmInstance?.stop()
+                    } else {
+                        document.createVMInstance(with: fileURL)
+                        document.vmInstance?.startRecovery()
+                    }
+                })
+                .buttonStyle(BorderlessButtonStyle())
+                .disabled(document.isRunning)
+            }
+
+            ToolbarItem {
                 Button(action: {
                     guard let fileURL = fileURL else {
                         return
