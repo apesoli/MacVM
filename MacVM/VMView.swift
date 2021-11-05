@@ -54,6 +54,21 @@ struct VMView: View {
 
             ToolbarItem {
                 Button(action: {
+                    if document.isRunning && !document.isPaused {
+                        document.vmInstance?.pause()
+                    } else if document.isRunning && document.isPaused {
+                        document.vmInstance?.resume()
+                    }
+                }) {
+                    Image(systemName: !document.isPaused ? "pause.circle" : "play.circle")
+                        .font(.system(size: 24, weight: .regular, design: .rounded))
+                }
+                .buttonStyle(BorderlessButtonStyle())
+                .disabled(!document.isRunning)
+            }
+
+            ToolbarItem {
+                Button(action: {
                     guard let fileURL = fileURL else {
                         return
                     }

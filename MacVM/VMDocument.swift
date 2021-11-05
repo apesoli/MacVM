@@ -25,6 +25,7 @@ final class VMDocument: ReferenceFileDocument {
     @Published var vmInstallationState: VMInstallationState
     
     @Published var isRunning = false
+    @Published var isPaused  = false
     
     static var readableContentTypes: [UTType] { [.macOSVM] }
     

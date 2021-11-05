@@ -229,12 +229,24 @@ class VMInstance: NSObject, VZVirtualMachineDelegate {
         }
     }
     
+    func pause() {
+        self.virtualMachine?.pause(completionHandler: { _ in
+            self.document?.isPaused  = true
+        })
+    }
+
+    func resume() {
+        self.virtualMachine?.resume(completionHandler: { _ in
+            self.document?.isPaused  = false
+        })
+    }
+
     func stop() {
         self.virtualMachine?.stop(completionHandler: { _ in
             self.document?.isRunning = false
         })
     }
-    
+
     private func getVMConfiguration(hardwareModel: VZMacHardwareModel,
                                     machineIdentifier: VZMacMachineIdentifier,
                                     diskURL: URL,
