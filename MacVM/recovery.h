@@ -4,7 +4,7 @@
 
 @interface Recovery : NSObject
 
-- (bool)boot: (VZVirtualMachine * _Nonnull)vm;
+- (void)boot: (VZVirtualMachine * _Nonnull)vm completion: (void (^_Nonnull)(NSError * _Nullable err))completion_handler;
 
 @end
 

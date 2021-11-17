@@ -175,12 +175,18 @@ class VMInstance: NSObject, VZVirtualMachineDelegate {
             let vm = VZVirtualMachine(configuration: configuration, queue: .main)
             vm.delegate = self
 
-            let recovery = Recovery()
-            let ret = recovery.boot(vm)
-            if !ret {
-                self.document?.isRunning = true
+            let completion_handler:(Error?) -> Void = { (error) in
+                if error != nil {
+                    NSLog("Error while starting VM in Recovery Mode \(String(describing: error))")
+                }
+                else {
+                    NSLog("Success")
+                    self.document?.isRunning = true
+                }
             }
 
+            let recovery = Recovery()
+            recovery.boot(vm, completion: completion_handler)
             self.virtualMachine = vm
         } catch {
             NSLog("Error: \(error)")
