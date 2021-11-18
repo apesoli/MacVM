@@ -16,7 +16,7 @@
 // This accepts a VZVirtualMachine instance in order to call on the private API
 // and boot in recovery mode
 //
-- (void)boot: (VZVirtualMachine * _Nonnull)vm completion: (void (^)(NSError *err))completion_handler;
+- (void)boot: (VZVirtualMachine *)vm completion: (void (^)(NSError *err))completion_handler;
 {
     // Credits to KhaosT
     // https://twitter.com/KhaosT/status/1452841752419659776
