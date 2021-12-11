@@ -8,6 +8,6 @@
 #ifndef MacVM_Bridging_Header_h
 #define MacVM_Bridging_Header_h
 
-#import "recovery.h"
+#import "private.h"
 
 #endif /* MacVM_Bridging_Header_h */

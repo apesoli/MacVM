@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		38CABAC6272B39770003EDE0 /* recovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CABAC5272B39770003EDE0 /* recovery.m */; };
 		CC4E3630268AD4E400AA5EA1 /* MacVMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E362F268AD4E400AA5EA1 /* MacVMApp.swift */; };
 		CC4E3634268AD4E500AA5EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC4E3633268AD4E500AA5EA1 /* Assets.xcassets */; };
 		CC4E3637268AD4E500AA5EA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC4E3636268AD4E500AA5EA1 /* Preview Assets.xcassets */; };
@@ -20,9 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		38CABABD272B06B30003EDE0 /* recovery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = recovery.h; sourceTree = "<group>"; };
+		38C93EC127642E91009918D4 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		38CABAC4272B0AEF0003EDE0 /* MacVM-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacVM-Bridging-Header.h"; sourceTree = "<group>"; };
-		38CABAC5272B39770003EDE0 /* recovery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = recovery.m; sourceTree = "<group>"; };
 		CC4E362C268AD4E400AA5EA1 /* MacVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC4E362F268AD4E400AA5EA1 /* MacVMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacVMApp.swift; sourceTree = "<group>"; };
 		CC4E3633268AD4E500AA5EA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,8 +76,7 @@
 				CC4E3645268ADC6800AA5EA1 /* VMInstance.swift */,
 				CC4E3633268AD4E500AA5EA1 /* Assets.xcassets */,
 				CC4E3635268AD4E500AA5EA1 /* Preview Content */,
-				38CABABD272B06B30003EDE0 /* recovery.h */,
-				38CABAC5272B39770003EDE0 /* recovery.m */,
+				38C93EC127642E91009918D4 /* private.h */,
 				38CABAC4272B0AEF0003EDE0 /* MacVM-Bridging-Header.h */,
 			);
 			path = MacVM;
@@ -165,7 +162,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCD1A9B5268C34AD001E87AC /* VMUIView.swift in Sources */,
-				38CABAC6272B39770003EDE0 /* recovery.m in Sources */,
 				CC4E3630268AD4E400AA5EA1 /* MacVMApp.swift in Sources */,
 				CC4E3648268AE5A800AA5EA1 /* VMInstallView.swift in Sources */,
 				CC4E3642268AD85400AA5EA1 /* VMView.swift in Sources */,
@@ -306,7 +302,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MacVM/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
-				ENABLE_APP_SANDBOX = YES;
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
@@ -344,7 +340,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MacVM/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
-				ENABLE_APP_SANDBOX = YES;
+				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
