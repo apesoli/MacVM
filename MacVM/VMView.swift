@@ -36,6 +36,30 @@ struct VMView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         .toolbar {
             ToolbarItem {
+                Button("S", action: {
+                    if document.serialOutput {
+                        document.serialOutput = false
+                    } else {
+                        document.serialOutput = true
+                    }
+                }).foregroundColor(!document.serialOutput ? Color(red: 1.0, green: 0.0, blue: 0.0) : Color(red: 0.0, green: 1.0, blue: 0.0))
+                .buttonStyle(BorderlessButtonStyle())
+                .disabled(document.isRunning)
+            }
+
+            ToolbarItem {
+                Button("D", action: {
+                    if document.debugStub {
+                        document.debugStub = false
+                    } else {
+                        document.debugStub = true
+                    }
+                }).foregroundColor(!document.debugStub ? Color(red: 1.0, green: 0.0, blue: 0.0) : Color(red: 0.0, green: 1.0, blue: 0.0))
+                .buttonStyle(BorderlessButtonStyle())
+                .disabled(document.isRunning)
+            }
+
+            ToolbarItem {
                 Button("R", action: {
                     guard let fileURL = fileURL else {
                         return
@@ -48,7 +72,7 @@ struct VMView: View {
                         document.vmInstance?.startRecovery()
                     }
                 })
-                .buttonStyle(BorderlessButtonStyle())
+                .buttonStyle(BorderedButtonStyle())
                 .disabled(document.isRunning)
             }
 

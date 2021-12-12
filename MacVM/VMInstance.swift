@@ -324,13 +324,29 @@ class VMInstance: NSObject, VZVirtualMachineDelegate {
         configuration.pointingDevices = [pointingDevice]
         configuration.storageDevices = storages
         configuration.audioDevices = [soundDevice]
+
+        if document!.debugStub {
+            NSLog("Enabling debugging, gdb stub listening on localhost:3335")
+            let gdb_config = _VZGDBDebugStubConfiguration(port: 3335)!
+            configuration._setDebugStub(gdb_config)
+        }
+
+        if document!.serialOutput {
+            NSLog("Enabling serial output")
+            // Taken from https://github.com/NyanSatan/Virtual-iBoot-Fun/blob/master/virtualization_test/virtualization_test/VMDelegate.m
+            // This will work right now only when run from Xcode
+            let serialPort = _VZPL011SerialPortConfiguration()
+            serialPort.attachment = VZFileHandleSerialPortAttachment(fileHandleForReading: nil, fileHandleForWriting: FileHandle.standardOutput)
+            configuration.serialPorts = [serialPort]
+        }
+
         return configuration
     }
-    
+
     func guestDidStop(_ virtualMachine: VZVirtualMachine) {
         document?.isRunning = false
     }
-    
+
     func virtualMachine(_ virtualMachine: VZVirtualMachine, didStopWithError error: Error) {
         document?.isRunning = false
     }

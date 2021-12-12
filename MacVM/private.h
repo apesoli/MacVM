@@ -33,8 +33,7 @@
 @end
 
 //
-// Haven't been able so far to enable GDB stub
-// Looks like we need com.apple.private.virtualization
+// NOTE: com.apple.private.virtualization is needed for this
 // https://github.com/NyanSatan/Virtual-iBoot-Fun
 @interface _VZGDBDebugStubConfiguration : NSObject <NSCopying>
 
@@ -48,6 +47,12 @@
 @interface VZVirtualMachineConfiguration()
 
 - (void)_setDebugStub: (_VZGDBDebugStubConfiguration *_Nonnull)config;
+
+@end
+
+@interface _VZPL011SerialPortConfiguration : VZSerialPortConfiguration
+
+- (instancetype _Nonnull)init;
 
 @end
 
