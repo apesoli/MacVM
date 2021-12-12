@@ -27,7 +27,7 @@ fail to start - when it doesn't, you will see the GDB stub port open (3335) but
 connection will fail with "failed to get reply to handshake packet".
 
 Serial port code and private entitlement info taken from (https://github.com/NyanSatan/Virtual-iBoot-Fun/).
-Right now it simply prints to stdout.
+Serial output is simply printed to stdout right now.
 
 ## Screenshots
 
