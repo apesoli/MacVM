@@ -4,20 +4,32 @@ macOS Monterey added support for virtualizing macOS with Apple silicon host.
 
 This project provides an example project for the setup.
 
-## Update for recovery boot options
+## Added functionalities from main repo
 
-Full credits to Khaos Tian, fantastic work. I've only put things together
-(in a very hacky way).
+Full credits to Khaos Tian, fantastic work.
+So far I've added the ability to boot to Recovery, done by clicking on the '**R**'
+button.
 
-https://gist.github.com/KhaosT/8167170d1452daec1ba292e37e5768c8
-
-My Swift-fu is non-existent, and my Objective-C is rusty. I've added an "R"
-button next to the play button on the top right corner that will boot your VM
-in Recovery Mode.
+(https://gist.github.com/KhaosT/8167170d1452daec1ba292e37e5768c8)
 
 This is super convenient if you need to test things with SIP/AMFI disabled, or if
 you need to do kernel debugging. Although kernel debugging on M1 appears to be still
 at the point where you can only inspect current state.
+
+I have also added the ability to get serial output and enable a GDB stub within
+Virtualization.framework, they can be toggled ON/OFF through two new buttons.
+'**S**' enables serial output, '**D**' enables debug functionalities.
+
+On the topic of having a functioning GDB stub, you will need to `amfi_get_out_of_my_way=1`
+in order to run MacVM with `com.apple.private.virtualization`. You will need to
+add it manually to MacVM.entitlements. Without the entitlement, the VM will sometime
+fail to start - when it doesn't, you will see the GDB stub port open (3335) but
+connection will fail with "failed to get reply to handshake packet".
+
+Serial port code and private entitlement info taken from (https://github.com/NyanSatan/Virtual-iBoot-Fun/).
+Right now it simply prints to stdout.
+
+## Screenshots
 
 <img width="771" alt="Config" src="https://user-images.githubusercontent.com/1725664/124231369-04456000-dac5-11eb-895c-af933a08a5d7.png">
 
