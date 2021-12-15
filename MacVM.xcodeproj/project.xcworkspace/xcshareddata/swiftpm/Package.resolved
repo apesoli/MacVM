@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftTerm",
+        "repositoryURL": "https://github.com/migueldeicaza/SwiftTerm",
+        "state": {
+          "branch": "main",
+          "revision": "841c20c26c4acadc84487ed89591e5246b21e101",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

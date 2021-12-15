@@ -28,7 +28,21 @@ class VMInstance: NSObject, VZVirtualMachineDelegate {
     private let documentURL: URL
     private(set) var virtualMachine: VZVirtualMachine?
     private(set) var installer: VZMacOSInstaller?
-        
+
+    private let readPipe = Pipe()
+    private let writePipe = Pipe()
+
+    private lazy var consoleWindow: NSWindow = {
+        let viewController = VMConsole()
+        viewController.configure(with: readPipe, writePipe: writePipe)
+        return NSWindow(contentViewController: viewController)
+    }()
+
+    private lazy var consoleWindowController: NSWindowController = {
+        let windowController = NSWindowController(window: consoleWindow)
+        return windowController
+    }()
+
     var diskImageSize: UInt64 = 0
     
     @Published var isRunning = false
@@ -333,11 +347,15 @@ class VMInstance: NSObject, VZVirtualMachineDelegate {
 
         if document!.serialOutput {
             NSLog("Enabling serial output")
-            // Taken from https://github.com/NyanSatan/Virtual-iBoot-Fun/blob/master/virtualization_test/virtualization_test/VMDelegate.m
-            // This will work right now only when run from Xcode
+            // Taken from
+            // https://github.com/NyanSatan/Virtual-iBoot-Fun/blob/master/virtualization_test/virtualization_test/VMDelegate.m
             let serialPort = _VZPL011SerialPortConfiguration()
-            serialPort.attachment = VZFileHandleSerialPortAttachment(fileHandleForReading: nil, fileHandleForWriting: FileHandle.standardOutput)
+            serialPort.attachment = VZFileHandleSerialPortAttachment(
+                fileHandleForReading: writePipe.fileHandleForReading,
+                fileHandleForWriting: readPipe.fileHandleForWriting)
             configuration.serialPorts = [serialPort]
+
+            showConsole()
         }
 
         return configuration
@@ -349,5 +367,11 @@ class VMInstance: NSObject, VZVirtualMachineDelegate {
 
     func virtualMachine(_ virtualMachine: VZVirtualMachine, didStopWithError error: Error) {
         document?.isRunning = false
+    }
+
+    func showConsole() {
+        consoleWindow.setContentSize(NSSize(width: 700, height: 400))
+        consoleWindow.title = "MacVM Console"
+        consoleWindowController.showWindow(nil)
     }
 }

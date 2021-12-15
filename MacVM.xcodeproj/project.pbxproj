@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		381900642766B922009F0D8F /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 381900632766B922009F0D8F /* SwiftTerm */; };
+		381900662766B948009F0D8F /* VMConsole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381900652766B948009F0D8F /* VMConsole.swift */; };
 		CC4E3630268AD4E400AA5EA1 /* MacVMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E362F268AD4E400AA5EA1 /* MacVMApp.swift */; };
 		CC4E3634268AD4E500AA5EA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC4E3633268AD4E500AA5EA1 /* Assets.xcassets */; };
 		CC4E3637268AD4E500AA5EA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC4E3636268AD4E500AA5EA1 /* Preview Assets.xcassets */; };
@@ -19,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		381900652766B948009F0D8F /* VMConsole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMConsole.swift; sourceTree = "<group>"; };
 		38C93EC127642E91009918D4 /* private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = private.h; sourceTree = "<group>"; };
 		38CABAC4272B0AEF0003EDE0 /* MacVM-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacVM-Bridging-Header.h"; sourceTree = "<group>"; };
 		CC4E362C268AD4E400AA5EA1 /* MacVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				381900642766B922009F0D8F /* SwiftTerm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +73,7 @@
 				CC4E3643268AD8DB00AA5EA1 /* Info.plist */,
 				CC4E362F268AD4E400AA5EA1 /* MacVMApp.swift */,
 				CC4E3641268AD85400AA5EA1 /* VMView.swift */,
+				381900652766B948009F0D8F /* VMConsole.swift */,
 				CCD1A9B4268C34AD001E87AC /* VMUIView.swift */,
 				CC4E3647268AE5A800AA5EA1 /* VMInstallView.swift */,
 				CC4E363D268AD76000AA5EA1 /* VMDocument.swift */,
@@ -106,6 +111,9 @@
 			dependencies = (
 			);
 			name = MacVM;
+			packageProductDependencies = (
+				381900632766B922009F0D8F /* SwiftTerm */,
+			);
 			productName = MacVM;
 			productReference = CC4E362C268AD4E400AA5EA1 /* MacVM.app */;
 			productType = "com.apple.product-type.application";
@@ -135,6 +143,9 @@
 				Base,
 			);
 			mainGroup = CC4E3623268AD4E400AA5EA1;
+			packageReferences = (
+				381900622766B922009F0D8F /* XCRemoteSwiftPackageReference "SwiftTerm" */,
+			);
 			productRefGroup = CC4E362D268AD4E400AA5EA1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -161,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				381900662766B948009F0D8F /* VMConsole.swift in Sources */,
 				CCD1A9B5268C34AD001E87AC /* VMUIView.swift in Sources */,
 				CC4E3630268AD4E400AA5EA1 /* MacVMApp.swift in Sources */,
 				CC4E3648268AE5A800AA5EA1 /* VMInstallView.swift in Sources */,
@@ -386,6 +398,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		381900622766B922009F0D8F /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		381900632766B922009F0D8F /* SwiftTerm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 381900622766B922009F0D8F /* XCRemoteSwiftPackageReference "SwiftTerm" */;
+			productName = SwiftTerm;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CC4E3624268AD4E400AA5EA1 /* Project object */;
 }
